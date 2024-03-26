@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
@@ -22,6 +23,7 @@ import com.cep.model.Endereco;
 import com.cep.repository.EnderecoRepository;
 
 @Controller
+@RequestMapping("/")
 public class EnderecoController {
 	
 	@Autowired
@@ -58,8 +60,9 @@ public class EnderecoController {
 		
 		enderecoRepository.save(endereco);
 		redirect.addFlashAttribute("msgExito", "Endereco adicionado com sucesso!");
+		//return "cadastroEndereco";
+		//return "redirect:/cadastroEndereco";
 		return "redirect:/";
-		
 	}	
 	
 	
