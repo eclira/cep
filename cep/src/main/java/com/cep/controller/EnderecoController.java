@@ -45,12 +45,12 @@ public class EnderecoController {
 	}
 	
 	@GetMapping("/novo")
-	public String novo(Model model) {
-		model.addAttribute("enderecos", new Endereco());
-		return "novo";
+	public String novoEndereco(Model model) {
+		model.addAttribute("endereco", new Endereco());
+		return "cadastroEndereco";
 	}
 	
-	@PostMapping("/")
+	@PostMapping("/salvar")
 	public String salvar(@Validated Endereco endereco, BindingResult bindingResult, RedirectAttributes redirect, Model model) {
 		
 		if(bindingResult.hasErrors()) {
@@ -59,10 +59,9 @@ public class EnderecoController {
 		}
 		
 		enderecoRepository.save(endereco);
-		redirect.addFlashAttribute("msgExito", "Endereco adicionado com sucesso!");
-		//return "cadastroEndereco";
-		//return "redirect:/cadastroEndereco";
-		return "redirect:/";
+		redirect.addFlashAttribute("msgExito", "Endereco adicionado com sucesso!");		
+		
+		return "redirect:/novo";
 	}	
 	
 	
